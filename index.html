@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Money mater</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            clifford: "#da373d",
+                        },
+                    },
+                },
+            };
+        </script>
+    </head>
+    <body>
+        <main class="bg-gray-900 min-h-screen flex items-center">
+            <div class="w-4/5 mx-auto space-y-6 pt-8">
+                <div class="flex items-center justify-center">
+                    <h1 class="font-semibold text-5xl leading-none text-white italic capitalize">Try to be a money master</h1>
+                    <img src="images/dollar.webp" class="w-12" alt="">
+                </div>
+                <div class="grid grid-cols-2 space-x-8">
+                    <div>
+                        <img src="images/moneyman.jpg" class="w-full" alt="" />
+                    </div>
+                    <div class="bg-blue-100 py-10 px-14">
+                        <div class="flex flex-col items-center text-right space-y-5">
+                            <div>
+                                <h1 class="font-semibold italic text-2xl text-center">Income</h1>
+                                <div>
+                                    <label for="income">Income:</label>
+                                    <input type="number" id="income" class="px-3 py-1" />
+                                </div>
+                            </div>
+                            <div>
+                                <h1 class="font-semibold italic text-2xl text-center">Expenses</h1>
+                                <div class="space-y-3">
+                                    <label for="income">Food:</label>
+                                    <input type="number" id="food" class="px-3 py-1" />
+                                    <br />
+                                    <label for="income">Rent:</label>
+                                    <input type="number" id="rent" class="px-3 py-1" />
+                                    <br />
+                                    <label for="income">Clothes:</label>
+                                    <input type="number" id="cloth" class="px-3 py-1" />
+                                </div>
+                            </div>
+                            <div>
+                                <button id="btn-calculate" class="px-5 py-1 bg-blue-600 border-2 border-transparent rounded-xl hover:border-blue-600 hover:text-blue-600 duration-300 hover:bg-white text-white font-semibold text-lg uppercase leading-none">calculate</button>
+                            </div>
+
+                            <div class="text-center hidden" id="resultshow">
+                                <h1 class="text-xl font-bold capitalize">total expenses: <span id="total-expenses" class="font-bold text-xl"></span></h1>
+                                <h1 class="text-xl font-bold capitalize">balance: <span id="balance" class="font-bold text-xl"></span></h1>
+                            </div>
+
+                            <div class="flex items-center justify-between gap-3">
+                                <div>
+                                    <label for="income" class="mr-2" >Save:</label>
+                                    <input type="number" class="px-3 py-1 w-20" id="save">
+                                </div>
+                                <h3>%</h3>
+                                <button id="btn-save" class="px-5 py-1 bg-blue-600 border-2 border-transparent hover:border-blue-600 hover:text-blue-600 duration-300 hover:bg-white text-white font-semibold text-lg uppercase leading-none">save</button>
+                            </div>
+
+                            <div id="savehidden" class="text-center hidden">
+                                <h1 class="text-xl font-bold capitalize">total Save: <span id="total-save" class="font-bold text-xl"></span></h1>
+                                <h1 class="text-xl font-bold capitalize">Remaining balance: <span id="remainbalance" class="font-bold text-xl"></span></h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src="script.js"></script>
+    </body>
+</html>
