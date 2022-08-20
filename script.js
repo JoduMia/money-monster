@@ -41,11 +41,20 @@ function validation(selector) {
         return elementValue;
     }
 }
+// ==========Utilites function ends here=======
 
 
 
-// Utilites function ends here===========================
+//============function implementation sector=========
+// inputfield validation calling with for loop ==============
+const inputs = document.querySelectorAll('input');
+for(const input of inputs){
+    input.addEventListener('blur', function (event) {
+        validation(input)
+    })
+}
 
+//calculate button evenlistener =======================
 document.getElementById('btn-calculate').addEventListener('click', function () {
     const total = calculate();
     const totalexpense = document.getElementById('total-expenses');
@@ -65,10 +74,7 @@ document.getElementById('btn-calculate').addEventListener('click', function () {
 })
 
 
-
-
 //saving functionality======================
-
 document.getElementById('btn-save').addEventListener('click', function () {
     let selfValue = getValue('save');
     const income = getValue('income');
@@ -89,7 +95,6 @@ document.getElementById('btn-save').addEventListener('click', function () {
         save = (income * selfValue) / 100;
     }
 
-    
     if(balance == 0){
         const remaining = income - save;
         totalSave.innerText = Math.round(save);
@@ -102,19 +107,7 @@ document.getElementById('btn-save').addEventListener('click', function () {
             totalSave.innerText = Math.round(save);
             remainbalance.innerText = Math.round(remaining);
         }
-
     }
-
     const savehidden = document.getElementById('savehidden');
     savehidden.style.display = 'block'
 })
-
-
-
-
-const inputs = document.querySelectorAll('input');
-for(const input of inputs){
-    input.addEventListener('blur', function (event) {
-        validation(input)
-    })
-}
