@@ -71,12 +71,16 @@ document.getElementById('btn-calculate').addEventListener('click', function () {
 
 document.getElementById('btn-save').addEventListener('click', function () {
     let selfValue = getValue('save');
-    const income = getValue('income')
+    const income = getValue('income');
+    const totalSave = document.getElementById('total-save');
+    const remainbalance = document.getElementById('remainbalance');
+
     const balancestring = document.getElementById('balance').innerText;
     let balance = parseInt(balancestring);
     if(isNaN(balance)){
         balance = 0;
     }
+
     let save;
     if(selfValue>=100){
         alert('Savings shouldn\'t be greager or equal to your income !!!')
@@ -84,21 +88,19 @@ document.getElementById('btn-save').addEventListener('click', function () {
     } else {
         save = (income * selfValue) / 100;
     }
+
+    
     if(balance == 0){
         const remaining = income - save;
-        const totalSave = document.getElementById('total-save');
-        totalSave.innerText = Math.ceil(save);
-        const remainbalance = document.getElementById('remainbalance');
-        remainbalance.innerText = Math.floor(remaining);
+        totalSave.innerText = Math.round(save);
+        remainbalance.innerText = Math.round(remaining);
     } else {
         if(save> balance){
             alert('Save must be less than your balance');
         } else {
             const remaining = balance - save;
-            const totalSave = document.getElementById('total-save');
-            totalSave.innerText = Math.ceil(save);
-            const remainbalance = document.getElementById('remainbalance');
-            remainbalance.innerText = Math.floor(remaining);
+            totalSave.innerText = Math.round(save);
+            remainbalance.innerText = Math.round(remaining);
         }
 
     }
