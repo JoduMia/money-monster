@@ -13,11 +13,6 @@ function getValue(elementId) {
     }
 }
 
-// function getValue(elementId) {
-//     const element = document.getElementById(elementId);
-//     const value = validation(element);
-//     return value;
-// }
 
 function calculate() {
     const food = getValue('food');
@@ -30,7 +25,6 @@ function calculate() {
 
 function validation(selector) {
     const elementString = selector.value;
-    console.log(elementString);
     let elementValue = parseInt(elementString)
     if(elementValue == ''){
         alert('Empty fields are denied. You should add value !!!');
@@ -76,20 +70,38 @@ document.getElementById('btn-calculate').addEventListener('click', function () {
 //saving functionality======================
 
 document.getElementById('btn-save').addEventListener('click', function () {
-    const selfValue = getValue('save');
-    console.log(selfValue);
+    let selfValue = getValue('save');
+    const income = getValue('income')
     const balancestring = document.getElementById('balance').innerText;
     let balance = parseInt(balancestring);
     if(isNaN(balance)){
         balance = 0;
     }
-    const save = (balance * selfValue) / 100;
-    const remaining = balance - save;
+    let save;
+    if(selfValue>=100){
+        alert('Savings shouldn\'t be greager or equal to your income !!!')
+        save = 0
+    } else {
+        save = (income * selfValue) / 100;
+    }
+    if(balance == 0){
+        const remaining = income - save;
+        const totalSave = document.getElementById('total-save');
+        totalSave.innerText = Math.ceil(save);
+        const remainbalance = document.getElementById('remainbalance');
+        remainbalance.innerText = Math.floor(remaining);
+    } else {
+        if(save> balance){
+            alert('Save must be less than your balance');
+        } else {
+            const remaining = balance - save;
+            const totalSave = document.getElementById('total-save');
+            totalSave.innerText = Math.ceil(save);
+            const remainbalance = document.getElementById('remainbalance');
+            remainbalance.innerText = Math.floor(remaining);
+        }
 
-    const totalSave = document.getElementById('total-save');
-    totalSave.innerText = Math.ceil(save);
-    const remainbalance = document.getElementById('remainbalance');
-    remainbalance.innerText = Math.floor(remaining);
+    }
 
     const savehidden = document.getElementById('savehidden');
     savehidden.style.display = 'block'
