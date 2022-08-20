@@ -4,10 +4,20 @@ function getValue(elementId) {
     const elementValue = parseInt(elementValueString);
     if(isNaN(elementValue)){
         return 0;
+    } else if(elementValue < 1) {
+        alert('You can\'t add a negative value !!!')
+        element.value = '';
+        return 0;
     } else {
         return elementValue;
     }
 }
+
+// function getValue(elementId) {
+//     const element = document.getElementById(elementId);
+//     const value = validation(element);
+//     return value;
+// }
 
 function calculate() {
     const food = getValue('food');
@@ -15,6 +25,27 @@ function calculate() {
     const cloth = getValue('cloth');
     const total = food + cloth + rent;
     return total;
+}
+
+
+function validation(selector) {
+    const elementString = selector.value;
+    console.log(elementString);
+    let elementValue = parseInt(elementString)
+    if(elementValue == ''){
+        alert('Empty fields are denied. You should add value !!!');
+        return 0;
+    }else if(isNaN(elementValue)){
+        alert('You must add numbers not the text !!!');
+        selector.value = '';
+        return 0;
+    } else if(elementValue < 1){
+        alert('Negative values are denied !!!')
+        selector.value = '';
+        return false;
+    } else {
+        return elementValue;
+    }
 }
 
 
@@ -46,6 +77,7 @@ document.getElementById('btn-calculate').addEventListener('click', function () {
 
 document.getElementById('btn-save').addEventListener('click', function () {
     const selfValue = getValue('save');
+    console.log(selfValue);
     const balancestring = document.getElementById('balance').innerText;
     let balance = parseInt(balancestring);
     if(isNaN(balance)){
@@ -62,3 +94,13 @@ document.getElementById('btn-save').addEventListener('click', function () {
     const savehidden = document.getElementById('savehidden');
     savehidden.style.display = 'block'
 })
+
+
+
+
+const inputs = document.querySelectorAll('input');
+for(const input of inputs){
+    input.addEventListener('blur', function (event) {
+        validation(input)
+    })
+}
